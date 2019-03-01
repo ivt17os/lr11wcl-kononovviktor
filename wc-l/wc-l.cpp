@@ -12,6 +12,7 @@ using namespace std;
 int main(int argc, char** argv ) {
     long long t1, t2, freq;
 	string str;
+	int n = 0;
 	
 	//if (argc == 1) 
     //{
@@ -27,9 +28,17 @@ int main(int argc, char** argv ) {
 
 
 	QueryPerformanceCounter((LARGE_INTEGER *)&t1);// смотрим время после окончания цикла
-	getline(f, str);
+
+	while (!f.eof())
+	{
+		getline(f, str);
+		n++;
+	}
+	cout << fixed;
+	cout.precision(3);
+
 	QueryPerformanceCounter((LARGE_INTEGER *)&t2);// смотрим время после окончания цикла
 
-	cout << str << "\n Time spent:" << (t2-t1)/(1.*freq);
+	cout << "Time spent:" << (t2-t1)/(1.*freq) << "\nFile has " << n << " lines\n";
 	return 0;
 }
